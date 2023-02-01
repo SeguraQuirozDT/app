@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+	<h1>Bienvenido al sistema</h1>
+	
+	<h1>Lista de registros</h1>
+	<br>
+	<br>
+	<a href="/usuario/new" class="btn btn-primary" role="button"> <strong>Nuevo</strong></a>
+	<a href="/home?status=A" class="btn btn-primary" role="button"> <strong>Activos</strong></a>
+	<a href="/home?status=B" class="btn btn-primary" role="button"> <strong>Inactivos</strong></a>
+	<a href="/home?status=R" class="btn btn-primary" role="button"> <strong>Revocados</strong></a>
+	<br>
+	<br>
+	<table  class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Fecha Alta</th>
+				<th>Status</th>
+				<th>Accion</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr th:each="user : ${listUsers}">
+				<td><span th:text="${user.id}"></span></td>
+				<td><span th:text="${user.nombre}"></span></td>
+				<td><span th:text="${user.fechaalta}"></span></td>
+				<td><span th:text="${user.status}"></span></td>
+				<td>
+					
+					<a th:href="@{/usuario/activar/{id}(id=${user.id})}" class="btn btn-primary" th:if="${user.status} == 'B'">Activar</a>
+					<a th:href="@{/usuario/desactivar/{id}(id=${user.id})}" class="btn btn-primary" th:if="${user.status} == 'A'">Desactivar</a>
+					<a th:href="@{/usuario/update/{id}(id=${user.id})}" class="btn btn-primary" role="button"> <strong>Editar</strong></a>				
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<br>
+	<br>
+
+	<a href="/logout" title="Cerrar sesion" class="btn btn-primary" role="button"> <strong>Cerrar sistema</strong></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container my-2">
+		<h1>Actualizar Registro</h1>
+		<br> <br> <a href="/home" title="Cerrar sesion"
+			class="btn btn-primary" role="button"> <strong>Lista</strong></a> <br>
+		<br>
+
+		<form action="#" th:action="@{/usuario/updateSave}" th:object="${user}"
+			method="POST">
+			Nombre:<input type="text" th:field="*{nombre}" placeholder="Nombre"
+				class="form-control mb-4 col-4" required> 
+			Apellido Paterno: <input type="text"
+				th:field="*{apellido_paterno}" placeholder="Apellido Paterno"
+				class="form-control mb-4 col-4" required> 
+			Apellido Materno: <input type="text"
+				th:field="*{apellido_materno}" placeholder="Apellido Materno"
+				class="form-control mb-4 col-4" required> 
+			Login: <input type="text"
+				th:field="*{login}" placeholder="Login"
+				class="form-control mb-4 col-4" required> 
+			Email: <input type="email"
+				th:field="*{email}" placeholder="Email"
+				class="form-control mb-4 col-4" required>
+			Status: <select name="activo" th:field="*{status}" class="form-control mb-4 col-4">
+					<option value="A" selected>Activos</option>
+				  	<option value="B">Inactivos</option>
+				  	<option value="R">Revocados</option>
+				</select>
+				<input type="hidden" th:field="*{id}" />
+				
+			<button type="submit" class="btn btn-info col-2">Actualizar</button>
+		</form>
+
+		<br> <br> <a href="/logout" title="Cerrar sesion"
+			class="btn btn-primary" role="button"> <strong>Cerrar
+				sistema</strong></a>
+	</div>
+</body>
+</html>
